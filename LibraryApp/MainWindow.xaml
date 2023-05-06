@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="100" Width="400" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded"
+        >
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Button Grid.Column="0" x:Name="BT_Books" Content="Книги" Click="BT_Books_Click"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Grid.Column="1" x:Name="BT_Registrations" Content="Регистрации" Click="BT_Registrations_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Grid.Column="2" x:Name="BT_Readers" Content="Читатели" Click="BT_Readers_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>
 </Window>

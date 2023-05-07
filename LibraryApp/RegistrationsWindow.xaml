@@ -5,22 +5,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryApp"
         mc:Ignorable="d"
-        Title="RegistrationsWindow" Height="450" Width="800">
+        Title="Учет книг" Height="438" Width="894">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="21*"/>
+            <ColumnDefinition Width="185*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="169*"></RowDefinition>
+            <RowDefinition Height="265*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <DataGrid Grid.Row="0" AutoGenerateColumns="False" x:Name="readersGrid">
+        <DataGrid AutoGenerateColumns="False" x:Name="readersGrid" Margin="0,9,0,0" Grid.Row="1" Grid.ColumnSpan="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding bookname}" Header="#Книга" Width="120"/>
                 <DataGridTextColumn Binding="{Binding readername}" Header="Читатель" Width="250"/>
                 <DataGridTextColumn Binding="{Binding from}" Header="Выдана с" Width="250"/>
                 <DataGridTextColumn Binding="{Binding to}" Header="Вернуть до" Width="80*"/>
-                <DataGridTextColumn Binding="{Binding count}" Header="Кол-во Книг" Width="80*"/>
+                <DataGridTextColumn Binding="{Binding count}" Header="Книг на руках" Width="80*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Grid.Row="1" Name="BT_Update" Click="BT_Update_Click" Content="Обновить"/>
+        <Button x:Name="BT_Search" Click="BT_Search_Click" Content="Поиск" HorizontalAlignment="Left" Margin="74,0,0,0" VerticalAlignment="Center" Height="20" Width="62" Grid.Column="1"/>
+        <TextBox x:Name="TB_SearchByName" HorizontalAlignment="Left" Margin="26,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Height="18" Grid.ColumnSpan="2"/>
+        <TextBlock HorizontalAlignment="Left" Margin="26,55,0,0" TextWrapping="Wrap" Text="Поиск по ФИО" VerticalAlignment="Top" Height="16" Width="120" Grid.ColumnSpan="2"/>
+
+        <TextBox x:Name="TB_GiveBookID" HorizontalAlignment="Left" Margin="280,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="201" Height="18" Grid.Column="1"/>
+        <TextBox x:Name="TB_GiveReaderID" HorizontalAlignment="Left" Margin="280,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="201" Height="18" Grid.Column="1"/>
+        <TextBox x:Name="TB_GiveDateFrom" HorizontalAlignment="Left" Margin="280,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="201" Height="18" Grid.Column="1"/>
+        <TextBox x:Name="TB_GiveDateTo" HorizontalAlignment="Left" Margin="280,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="201" Height="18" Grid.Column="1"/>
+        <Button x:Name="BT_GiveBook" Click="BT_GiveBook_Click" Content="Выдать" HorizontalAlignment="Left" Margin="280,140,0,0" VerticalAlignment="Top" Height="20" Width="62" Grid.Column="1"/>
+
+
+        <TextBlock HorizontalAlignment="Left" Margin="280,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="120" Grid.Column="1"><Run Language="ru-ru" Text="Выдать Книгу"/></TextBlock>
+
+        <TextBlock HorizontalAlignment="Left" Margin="26,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="146" Grid.ColumnSpan="2"><Run Text="Вернуть Книгу"/><Run Language="ru-ru" Text=" ("/><Run Text="ID "/><Run Language="ru-ru" Text="книги)"/></TextBlock>
+        <TextBox x:Name="TB_ReturnBook" HorizontalAlignment="Left" Margin="26,131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="18" Grid.ColumnSpan="2"/>
+        <Button x:Name="BT_ReturnBook" Click="BT_ReturnBook_Click" Content="Вернуть" HorizontalAlignment="Left" Margin="74,129,0,0" VerticalAlignment="Top" Height="20" Width="62" Grid.Column="1"/>
+        <TextBlock HorizontalAlignment="Left" Margin="168,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="96" Grid.Column="1"><Run Text="ID "/><Run Language="ru-ru" Text="книги"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="168,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="96" Grid.Column="1"><Run Language="ru-ru" Text="Дата выдачи"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="168,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="96" Grid.Column="1"><Run Text="ID "/><Run Language="ru-ru" Text="читателя"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="168,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="96" Grid.Column="1"><Run Text="Дата в"/><Run Text="оз"/><Run Language="ru-ru" Text="в"/><Run Text="рата"/></TextBlock>
     </Grid>
 </Window>

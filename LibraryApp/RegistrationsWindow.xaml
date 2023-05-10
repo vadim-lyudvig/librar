@@ -22,8 +22,13 @@
                 <DataGridTextColumn Binding="{Binding readername}" Header="Читатель" Width="250"/>
                 <DataGridTextColumn Binding="{Binding from}" Header="Выдана с" Width="250"/>
                 <DataGridTextColumn Binding="{Binding to}" Header="Вернуть до" Width="80*"/>
-                <DataGridTextColumn Binding="{Binding count}" Header="Книг на руках" Width="80*"/>
+                <!--<DataGridTextColumn Binding="{Binding count}" Header="Книг на руках" Width="80*"/>-->
             </DataGrid.Columns>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Background" Value="{Binding status}" />
+                </Style>
+            </DataGrid.RowStyle>
         </DataGrid>
         <Button x:Name="BT_Search" Click="BT_Search_Click" Content="Поиск" HorizontalAlignment="Left" Margin="74,0,0,0" VerticalAlignment="Center" Height="20" Width="62" Grid.Column="1"/>
         <TextBox x:Name="TB_SearchByName" HorizontalAlignment="Left" Margin="26,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Height="18" Grid.ColumnSpan="2"/>

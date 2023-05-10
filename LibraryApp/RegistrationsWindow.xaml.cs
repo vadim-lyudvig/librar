@@ -33,11 +33,12 @@ namespace LibraryApp
             SqlCommand command = new(sql, connection);
             adapter = new(command);
             table = new();
+            
             adapter.Fill(table);
             readersGrid.ItemsSource = table.DefaultView;
         }
 
-        private void BT_Search_Click(object sender, RoutedEventArgs e)
+    private void BT_Search_Click(object sender, RoutedEventArgs e)
         {
             var sql = $"SELECT Books.name as bookname, Readers.name as readername, [from], [to], COUNT(*) as [count] FROM Registrations\r\nLEFT JOIN Readers ON Readers.id = Registrations.readerId\r\nLEFT JOIN Books ON Books.id = Registrations.bookId\r\nGROUP BY Books.name, Readers.name, [from], [to], Registrations.readerId \r\nHAVING Readers.name LIKE '%{TB_SearchByName.Text}%'";
             SqlCommand command = new(sql, connection);
@@ -52,7 +53,7 @@ namespace LibraryApp
             try
             {
                 var sql1 = $"SELECT COUNT(*) FROM Registrations WHERE readerId = '{TB_GiveReaderID.Text}'";
-                ;
+                
                 SqlCommand check = new(sql1, connection);
                 // Выполнение запроса и получение результата в виде объекта SQLiteDataReader
                 SqlDataReader reader = check.ExecuteReader();
@@ -65,6 +66,19 @@ namespace LibraryApp
                     return;
                 }
                 reader.Close();
+
+                var debtorSql = $"SELECT COUNT(*) FROM Registrations WHERE readerId = '{TB_GiveReaderID.Text}' AND [to] < '{DateTime.Now}'";
+
+                SqlCommand debtor = new SqlCommand(debtorSql, connection);
+                SqlDataReader debtorreader = debtor.ExecuteReader();
+                debtorreader.Read();
+                int debtorCount = debtorreader.GetInt32(0);            
+                if (count > 0)
+                {
+                    MessageBox.Show("У данного читателя есть просроченные несданные книги. Вы действительно хотите выдать книгу?", "Предупреждение", MessageBoxButton.YesNo);
+                    return;
+                }
+                debtorreader.Close();
 
                 Trace.WriteLine("BT_GiveBook_Click");
                 var bookId = TB_GiveBookID.Text;

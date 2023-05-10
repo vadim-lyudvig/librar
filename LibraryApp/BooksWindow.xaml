@@ -24,6 +24,15 @@
                 <DataGridTextColumn Binding="{Binding inLibrary}" Header="Статус выдачи" Width="80*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Grid.Row="1" Name="BT_Update" Click="BT_Update_Click" Content="Обновить"/>
+
+        <Button Grid.Row="1" Name="BT_Update" Click="BT_Update_Click" Content="Обновить" Margin="519,123,171,72"/>
+        
+        <TextBox x:Name="TB_BookFind" HorizontalAlignment="Left" Margin="296,62,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="BT_BookFind" Content="Найти" Click="BT_BookFind_Click" HorizontalAlignment="Left" Margin="435,60,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Label Content="Найти книгу по названию" HorizontalAlignment="Left" Margin="296,29,0,0" Grid.Row="1" VerticalAlignment="Top" Width="152"/>
+        
+        <TextBox x:Name="TB_BookFindID" HorizontalAlignment="Left" Margin="296,142,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="BT_BookFindID" Content="Найти" Click="BT_BookFindID_Click" HorizontalAlignment="Left" Margin="435,140,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Label Content="Найти книгу по ID" HorizontalAlignment="Left" Margin="296,109,0,0" Grid.Row="1" VerticalAlignment="Top" Width="152"/>
     </Grid>
 </Window>

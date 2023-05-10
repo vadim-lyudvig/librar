@@ -25,9 +25,11 @@ namespace LibraryApp
     {
         private SqlDataAdapter adapter;
         private DataTable table;
+        private SqlConnection connection;
         public BooksWindow(SqlConnection connection)
         {
             InitializeComponent();
+            this.connection = connection;
             SqlCommand command = new("SELECT * FROM Books", connection);
             adapter = new(command);
             table = new();
@@ -47,6 +49,24 @@ namespace LibraryApp
                 Trace.WriteLine(ex.Message);
                 MessageBox.Show("Произошла ошибка при обновлении даннных");
             }
+        }
+
+        private void BT_BookFind_Click(object sender, RoutedEventArgs e)
+        {
+            SqlCommand command = new($"SELECT * FROM Books WHERE name LIKE '%{TB_BookFind.Text}%'", connection);
+            adapter = new(command);
+            table = new();
+            adapter.Fill(table);
+            readersGrid.ItemsSource = table.DefaultView;
+        }
+
+        private void BT_BookFindID_Click(object sender, RoutedEventArgs e)
+        {
+            SqlCommand command = new($"SELECT * FROM Books WHERE id LIKE '%{TB_BookFindID.Text}%'", connection);
+            adapter = new(command);
+            table = new();
+            adapter.Fill(table);
+            readersGrid.ItemsSource = table.DefaultView;
         }
     }
 }

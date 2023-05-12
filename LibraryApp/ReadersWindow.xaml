@@ -27,7 +27,7 @@
 
         <TextBox x:Name="TB_ReaderFindID" HorizontalAlignment="Left" Margin="266,132,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="BT_ReaderFindID" Content="Найти" Click="BT_ReaderFindID_Click" HorizontalAlignment="Left" Margin="405,130,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Label Content="Найти читателя по паспорту" HorizontalAlignment="Left" Margin="266,99,0,0" Grid.Row="1" VerticalAlignment="Top" Width="152"/>
+        <Label Content="Найти читателя по паспорту" HorizontalAlignment="Left" Margin="266,99,0,0" Grid.Row="1" VerticalAlignment="Top" Width="176"/>
 
         <TextBox x:Name="TB_ReaderFind" HorizontalAlignment="Left" Margin="266,76,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="BT_ReaderFind" Content="Найти" Click="BT_ReaderFind_Click" HorizontalAlignment="Left" Margin="405,74,0,0" Grid.Row="1" VerticalAlignment="Top"/>

@@ -29,7 +29,7 @@ namespace LibraryApp
         {
             InitializeComponent();
             this.connection = connection;
-            var sql = "SELECT Books.name as bookname, Readers.name as readername, [from], [to], COUNT(*) as [count] FROM Registrations\r\nLEFT JOIN Readers ON Readers.id = Registrations.readerId\r\nLEFT JOIN Books ON Books.id = Registrations.bookId\r\nGROUP BY Books.name, Readers.name, [from], [to], Registrations.readerId";
+            var sql = "SELECT Books.id as bid, Readers.id as rid, Books.name as bookname, Readers.name as readername, [from], [to], COUNT(*) as [count] FROM Registrations\r\nLEFT JOIN Readers ON Readers.id = Registrations.readerId\r\nLEFT JOIN Books ON Books.id = Registrations.bookId\r\nGROUP BY Books.id, Readers.id, Books.name, Readers.name, [from], [to], Registrations.readerId";
             SqlCommand command = new(sql, connection);
             adapter = new(command);
             table = new();
@@ -38,9 +38,19 @@ namespace LibraryApp
             readersGrid.ItemsSource = table.DefaultView;
         }
 
-    private void BT_Search_Click(object sender, RoutedEventArgs e)
+        private void BT_Search_Click(object sender, RoutedEventArgs e)
         {
-            var sql = $"SELECT Books.name as bookname, Readers.name as readername, [from], [to], COUNT(*) as [count] FROM Registrations\r\nLEFT JOIN Readers ON Readers.id = Registrations.readerId\r\nLEFT JOIN Books ON Books.id = Registrations.bookId\r\nGROUP BY Books.name, Readers.name, [from], [to], Registrations.readerId \r\nHAVING Readers.name LIKE '%{TB_SearchByName.Text}%'";
+                var sql = $"SELECT Books.id as bid, Readers.id as rid, Books.name as bookname, Readers.name as readername, [from], [to], COUNT(*) as [count] FROM Registrations\r\nLEFT JOIN Readers ON Readers.id = Registrations.readerId\r\nLEFT JOIN Books ON Books.id = Registrations.bookId\r\nGROUP BY Books.id, Readers.id, Books.name, Readers.name, [from], [to], Registrations.readerId \r\nHAVING Readers.name LIKE '%{TB_SearchByName.Text}%'";
+                SqlCommand command = new(sql, connection);
+                adapter = new(command);
+                table = new();
+                adapter.Fill(table);
+                readersGrid.ItemsSource = table.DefaultView;
+        }
+
+        private void BT_ReaderSearchPassport_Click(object sender, RoutedEventArgs e)
+        {
+            var sql = $"SELECT Books.id as bid, Readers.id as rid, Books.name as bookname, Readers.name as readername, [from], [to], COUNT(*) as [count] FROM Registrations\r\nLEFT JOIN Readers ON Readers.id = Registrations.readerId\r\nLEFT JOIN Books ON Books.id = Registrations.bookId\r\n WHERE Readers.passport LIKE '%{TB_ReaderSearchPassport.Text}%'\r\n GROUP BY Books.id, Readers.id, Books.name, Readers.name, [from], [to], Registrations.readerId \r\n";
             SqlCommand command = new(sql, connection);
             adapter = new(command);
             table = new();

@@ -24,7 +24,6 @@
                 <DataGridTextColumn Binding="{Binding readername}" Header="Читатель" Width="250"/>
                 <DataGridTextColumn Binding="{Binding from}" Header="Выдана с" Width="250"/>
                 <DataGridTextColumn Binding="{Binding to}" Header="Вернуть до" Width="80*"/>
-                <!--<DataGridTextColumn Binding="{Binding count}" Header="Книг на руках" Width="80*"/>-->
             </DataGrid.Columns>
             <DataGrid.RowStyle>
                 <Style TargetType="DataGridRow">

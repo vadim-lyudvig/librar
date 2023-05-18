@@ -72,8 +72,7 @@ namespace LibraryApp
                 Trace.WriteLine($"Book Count: {count}");
                 if (count >=5)
                 {
-                    MessageBox.Show("Книга не может быть выдана. Превышен лимит книг 5");
-                    return;
+                    var res = MessageBox.Show("Книга не может быть выдана. Превышен лимит книг 5");
                 }
                 reader.Close();
 
@@ -85,8 +84,11 @@ namespace LibraryApp
                 int debtorCount = debtorreader.GetInt32(0);            
                 if (count > 0)
                 {
-                    MessageBox.Show("У данного читателя есть просроченные несданные книги. Вы действительно хотите выдать книгу?", "Предупреждение", MessageBoxButton.YesNo);
-                    return;
+                    var res = MessageBox.Show("У данного читателя есть просроченные несданные книги. Вы действительно хотите выдать книгу?", "Предупреждение", MessageBoxButton.YesNo);
+                    if (res != MessageBoxResult.Yes)
+                    {
+                        return;
+                    }
                 }
                 debtorreader.Close();
 
